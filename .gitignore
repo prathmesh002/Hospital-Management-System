@@ -1,5 +1,52 @@
+# Python
 __pycache__/
-*.pyc
-db.sqlite3
-staticfiles/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+
+# Logs
+*.log
+logs/
+
+# Test and coverage output
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+
+# Type-checker and linter caches
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build/package output
+build/
+dist/
+*.egg-info/
