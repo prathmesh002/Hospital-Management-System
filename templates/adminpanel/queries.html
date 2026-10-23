@@ -1,0 +1,22 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | {{ heading }}{% endblock %}
+{% block page_title %}Admin | {{ heading }}{% endblock %}
+{% block crumb %}{{ heading }}{% endblock %}
+{% block content %}
+<table class="table table-hover">
+	<thead><tr>
+		<th class="center">#</th><th>Full Name</th><th>Email Id</th><th>Contact Number</th><th>Message</th><th>Query Date</th>
+		{% if read %}<th>Admin Remark</th><th>Last Updation Date</th>{% endif %}<th>Action</th>
+	</tr></thead>
+	<tbody>
+	{% for q in queries %}
+	<tr>
+		<td class="center">{{ forloop.counter }}.</td><td>{{ q.full_name }}</td><td>{{ q.email }}</td><td>{{ q.contact_no }}</td>
+		<td>{{ q.message|truncatechars:80 }}</td><td>{{ q.posted_at|date:"d-m-Y h:i A" }}</td>
+		{% if read %}<td>{{ q.admin_remark|truncatechars:60 }}</td><td>{{ q.remark_updated_at|date:"d-m-Y h:i A" }}</td>{% endif %}
+		<td><a href="{% url 'adminpanel:query_details' q.pk %}" class="btn btn-primary btn-xs">View</a></td>
+	</tr>
+	{% empty %}<tr><td colspan="9" class="text-center">Nothing here.</td></tr>{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

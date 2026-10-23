@@ -1,0 +1,17 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | Query Details{% endblock %}
+{% block page_title %}Admin | Query Details{% endblock %}
+{% block crumb %}Query Details{% endblock %}
+{% block content %}
+<table class="table table-bordered">
+	<tr><th>Full Name</th><td>{{ query.full_name }}</td><th>Email</th><td>{{ query.email }}</td></tr>
+	<tr><th>Contact Number</th><td>{{ query.contact_no }}</td><th>Query Date</th><td>{{ query.posted_at|date:"d-m-Y h:i A" }}</td></tr>
+	<tr><th>Message</th><td colspan="3">{{ query.message|linebreaksbr }}</td></tr>
+	{% if query.is_read %}<tr><th>Last Updation Date</th><td colspan="3">{{ query.remark_updated_at|date:"d-m-Y h:i A" }}</td></tr>{% endif %}
+</table>
+<form method="post" style="max-width:700px;">
+	{% csrf_token %}
+	{% include "portal/_form.html" %}
+	<button type="submit" class="btn btn-o btn-primary">{% if query.is_read %}Update remark{% else %}Save remark and mark as read{% endif %}</button>
+</form>
+{% endblock %}

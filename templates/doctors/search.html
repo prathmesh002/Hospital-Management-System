@@ -1,0 +1,18 @@
+{% extends "doctors/base.html" %}
+{% block title %}Doctor | Search Patients{% endblock %}
+{% block page_title %}Doctor | Search Patients{% endblock %}
+{% block crumb %}Search Patients{% endblock %}
+{% block content %}
+<form role="form" method="post" class="form-inline" style="margin-bottom:20px;">
+	{% csrf_token %}
+	<div class="form-group">
+		<label for="searchdata">Search by Name / Mobile No.</label>
+		<input type="text" name="searchdata" id="searchdata" class="form-control" value="{{ term }}" required>
+	</div>
+	<button type="submit" class="btn btn-o btn-primary">Search</button>
+</form>
+{% if results is not None %}
+<h4 align="center">Result against "{{ term }}" keyword</h4>
+{% include "portal/_patient_table.html" with records=results edit_url="doctors:edit_patient" view_url="doctors:view_patient" %}
+{% endif %}
+{% endblock %}

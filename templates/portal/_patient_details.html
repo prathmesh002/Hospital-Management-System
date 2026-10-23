@@ -1,0 +1,7 @@
+<table class="table table-bordered">
+	<tr align="center"><td colspan="4" style="font-size:20px;color:blue">Patient Details</td></tr>
+	<tr><th>Patient Name</th><td>{{ record.name }}</td><th>Patient Email</th><td>{{ record.email }}</td></tr>
+	<tr><th>Patient Mobile Number</th><td>{{ record.contact_no }}</td><th>Patient Address</th><td>{{ record.address }}</td></tr>
+	<tr><th>Patient Gender</th><td>{{ record.gender }}</td><th>Patient Age</th><td>{{ record.age }}</td></tr>
+	<tr><th>Patient Medical History (if any)</th><td>{{ record.medical_history }}</td><th>Patient Reg Date</th><td>{{ record.created_at|date:"d-m-Y h:i A" }}</td></tr>
+</table>

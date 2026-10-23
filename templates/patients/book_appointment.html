@@ -1,0 +1,71 @@
+{% extends "patients/base.html" %}
+{% block title %}User | Book Appointment{% endblock %}
+{% block page_title %}User | Book Appointment{% endblock %}
+{% block crumb %}Book Appointment{% endblock %}
+{% block content %}
+<div class="row margin-top-30"><div class="col-lg-8 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">Book Appointment</h5></div>
+	<div class="panel-body">
+		<form method="post" name="book">
+			{% csrf_token %}
+			{% for error in form.non_field_errors %}<div class="alert alert-danger">{{ error }}</div>{% endfor %}
+			<div class="form-group{% if form.specialization.errors %} has-error{% endif %}">
+				<label for="id_specialization">Doctor Specialization</label>
+				<select name="specialization" id="id_specialization" class="form-control" required>
+					<option value="">Select Specialization</option>
+					{% for s in specializations %}<option value="{{ s.pk }}" {% if selected_specialization == s.pk|stringformat:"s" %}selected{% endif %}>{{ s.name }}</option>{% endfor %}
+				</select>
+				{% for e in form.specialization.errors %}<span class="help-block">{{ e }}</span>{% endfor %}
+			</div>
+			<div class="form-group{% if form.doctor.errors %} has-error{% endif %}">
+				<label for="id_doctor">Doctors</label>
+				<select name="doctor" id="id_doctor" class="form-control" required>
+					<option value="">Select Doctor</option>
+					{% for d in doctors %}<option value="{{ d.pk }}" data-spec="{{ d.specialization_id }}" data-fee="{{ d.fees|floatformat:"-2" }}" {% if selected_doctor == d.pk|stringformat:"s" %}selected{% endif %}>{{ d.name }}</option>{% endfor %}
+				</select>
+				{% for e in form.doctor.errors %}<span class="help-block">{{ e }}</span>{% endfor %}
+			</div>
+			<div class="form-group">
+				<label for="fees">Consultancy Fees</label>
+				<input type="text" id="fees" class="form-control" readonly>
+			</div>
+			<div class="form-group{% if form.appointment_date.errors %} has-error{% endif %}">
+				<label for="id_appointment_date">Date</label>
+				{{ form.appointment_date }}
+				{% for e in form.appointment_date.errors %}<span class="help-block">{{ e }}</span>{% endfor %}
+			</div>
+			<div class="form-group{% if form.appointment_time.errors %} has-error{% endif %}">
+				<label for="id_appointment_time">Time</label>
+				{{ form.appointment_time }}
+				{% for e in form.appointment_time.errors %}<span class="help-block">{{ e }}</span>{% endfor %}
+			</div>
+			<button type="submit" class="btn btn-o btn-primary">Submit</button>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}
+{% block extra_js %}
+<script>
+(function ($) {
+	var $spec = $('#id_specialization'), $doc = $('#id_doctor'), $fee = $('#fees');
+	var allOptions = $doc.find('option[data-spec]').clone();
+	function showFee() {
+		var f = $doc.find('option:selected').attr('data-fee');
+		$fee.val(f !== undefined ? f : '');
+	}
+	function rebuild() {
+		var s = $spec.val(), keep = $doc.val();
+		$doc.find('option[data-spec]').remove();
+		allOptions.each(function () {
+			if (!s || $(this).attr('data-spec') === s) { $doc.append($(this).clone()); }
+		});
+		$doc.val(keep);
+		if ($doc.val() === null) { $doc.val(''); }
+		showFee();
+	}
+	$spec.on('change', rebuild);
+	$doc.on('change', showFee);
+	rebuild();
+})(jQuery);
+</script>
+{% endblock %}

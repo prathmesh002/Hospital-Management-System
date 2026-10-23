@@ -1,0 +1,7 @@
+{% extends "portal/base.html" %}
+{% block sidebar %}{% include 'patients/_sidebar.html' %}{% endblock %}
+{% block user_menu %}
+<li><a href="{% url 'patients:edit_profile' %}">My Profile</a></li>
+<li><a href="{% url 'patients:change_password' %}">Change Password</a></li>
+{% endblock %}
+{% block crumb_root %}User{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | B/w Dates Reports{% endblock %}
+{% block page_title %}Admin | B/w Dates Reports{% endblock %}
+{% block crumb %}B/w Dates Reports{% endblock %}
+{% block content %}
+<div class="row"><div class="col-lg-6 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">Patients registered between two dates</h5></div>
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			{% include "portal/_form.html" %}
+			<button type="submit" class="btn btn-o btn-primary">Submit</button>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}

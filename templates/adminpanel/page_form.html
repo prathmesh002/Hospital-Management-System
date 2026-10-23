@@ -1,0 +1,16 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | {{ heading }}{% endblock %}
+{% block page_title %}Admin | {{ heading }}{% endblock %}
+{% block crumb %}{{ heading }}{% endblock %}
+{% block content %}
+<div class="row"><div class="col-lg-8 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">{{ heading }}</h5></div>
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			{% include "portal/_form.html" %}
+			<button type="submit" class="btn btn-o btn-primary">Update</button>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}

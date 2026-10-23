@@ -1,0 +1,6 @@
+{% extends "portal/base.html" %}
+{% block sidebar %}{% include 'adminpanel/_sidebar.html' %}{% endblock %}
+{% block user_menu %}
+<li><a href="{% url 'adminpanel:change_password' %}">Change Password</a></li>
+{% endblock %}
+{% block crumb_root %}Admin{% endblock %}

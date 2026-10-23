@@ -1,0 +1,31 @@
+{% extends "doctors/base.html" %}
+{% block title %}Doctor | Appointment History{% endblock %}
+{% block page_title %}Doctor | Appointment History{% endblock %}
+{% block crumb %}Appointment History{% endblock %}
+{% block content %}
+<table class="table table-hover">
+	<thead><tr>
+		<th class="center">#</th><th class="hidden-xs">Patient Name</th><th>Specialization</th><th>Consultancy Fee</th>
+		<th>Appointment Date / Time</th><th>Appointment Creation Date</th><th>Current Status</th><th>Action</th>
+	</tr></thead>
+	<tbody>
+	{% for a in appointments %}
+	<tr>
+		<td class="center">{{ forloop.counter }}.</td>
+		<td class="hidden-xs">{{ a.patient.display_name }}</td><td>{{ a.specialization }}</td><td>{{ a.fees|floatformat:"-2" }}</td>
+		<td>{{ a.appointment_date|date:"Y-m-d" }} / {{ a.appointment_time|time:"h:i A" }}</td>
+		<td>{{ a.posted_at|date:"d-m-Y h:i A" }}</td>
+		<td>{{ a.doctor_view_status }}</td>
+		<td>
+			{% if a.is_active %}
+			<form method="post" action="{% url 'doctors:cancel_appointment' a.pk %}" style="display:inline"
+				onsubmit="return confirm('Are you sure you want to cancel this appointment ?')">
+				{% csrf_token %}<button type="submit" class="btn btn-info btn-xs" title="Cancel">Cancel</button>
+			</form>
+			{% else %}Canceled{% endif %}
+		</td>
+	</tr>
+	{% empty %}<tr><td colspan="8" class="text-center">No appointments yet.</td></tr>{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

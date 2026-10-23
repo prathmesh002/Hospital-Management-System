@@ -1,0 +1,9 @@
+{% extends "patients/base.html" %}
+{% block title %}Users | Medical History{% endblock %}
+{% block page_title %}Users | Medical History{% endblock %}
+{% block crumb %}Medical History{% endblock %}
+{% block content %}
+{% include "portal/_patient_details.html" %}
+{% include "portal/_history_table.html" %}
+<a href="{% url 'patients:medical_history' %}" class="btn btn-default">Back</a>
+{% endblock %}

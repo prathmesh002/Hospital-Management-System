@@ -1,0 +1,10 @@
+<table class="table table-bordered" style="width:100%;">
+	<tr align="center"><th colspan="7">Medical History</th></tr>
+	<tr><th>#</th><th>Blood Pressure</th><th>Weight</th><th>Blood Sugar</th><th>Body Temperature</th><th>Medical Prescription</th><th>Visit Date</th></tr>
+	{% for h in history %}
+	<tr>
+		<td>{{ forloop.counter }}</td><td>{{ h.blood_pressure }}</td><td>{{ h.weight }}</td><td>{{ h.blood_sugar }}</td>
+		<td>{{ h.temperature }}</td><td>{{ h.prescription|linebreaksbr }}</td><td>{{ h.created_at|date:"d-m-Y h:i A" }}</td>
+	</tr>
+	{% empty %}<tr><td colspan="7" class="text-center">No medical history recorded yet.</td></tr>{% endfor %}
+</table>

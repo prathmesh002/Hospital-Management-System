@@ -1,0 +1,8 @@
+{% extends "patients/base.html" %}
+{% block title %}Users | Medical History{% endblock %}
+{% block page_title %}Users | Medical History{% endblock %}
+{% block crumb %}View Medical History{% endblock %}
+{% block content %}
+<h5 class="over-title margin-bottom-15">View <span class="text-bold">Medical History</span></h5>
+{% include "portal/_patient_table.html" with records=records view_url="patients:medical_history_detail" %}
+{% endblock %}

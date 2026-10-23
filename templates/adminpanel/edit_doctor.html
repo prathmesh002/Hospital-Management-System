@@ -1,0 +1,17 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | Edit Doctor{% endblock %}
+{% block page_title %}Admin | Edit Doctor{% endblock %}
+{% block crumb %}Edit Doctor{% endblock %}
+{% block content %}
+<div class="row"><div class="col-lg-8 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">Edit Doctor: {{ doctor.name }}</h5></div>
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			{% include "portal/_form.html" %}
+			<button type="submit" class="btn btn-o btn-primary">Update</button>
+			<a href="{% url 'adminpanel:manage_doctors' %}" class="btn btn-default">Back</a>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}

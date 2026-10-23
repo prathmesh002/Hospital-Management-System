@@ -1,0 +1,17 @@
+{% extends "patients/base.html" %}
+{% block title %}User | Update Email{% endblock %}
+{% block page_title %}User | Update Email{% endblock %}
+{% block crumb %}Update Email{% endblock %}
+{% block content %}
+<div class="row"><div class="col-lg-8 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">Update Email</h5></div>
+	<div class="panel-body">
+		<p>Current e-mail: <strong>{{ request.user.email }}</strong></p>
+		<form method="post">
+			{% csrf_token %}
+			{% include "portal/_form.html" %}
+			<button type="submit" class="btn btn-o btn-primary">Update</button>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}

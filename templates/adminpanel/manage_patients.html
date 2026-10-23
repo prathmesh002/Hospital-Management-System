@@ -1,0 +1,8 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | Manage Patients{% endblock %}
+{% block page_title %}Admin | Manage Patients{% endblock %}
+{% block crumb %}Manage Patients{% endblock %}
+{% block content %}
+<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
+{% include "portal/_patient_table.html" with records=records view_url="adminpanel:view_patient" %}
+{% endblock %}

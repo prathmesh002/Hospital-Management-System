@@ -1,0 +1,11 @@
+{% extends "doctors/base.html" %}
+{% block title %}Doctor | Manage Patients{% endblock %}
+{% block page_title %}Doctor | Manage Patients{% endblock %}
+{% block crumb %}View Patient{% endblock %}
+{% block content %}
+<h5 class="over-title margin-bottom-15">View <span class="text-bold">Patient</span></h5>
+{% include "portal/_patient_details.html" %}
+{% include "portal/_history_table.html" %}
+{% include "portal/_history_modal.html" %}
+{% endblock %}
+{% block extra_js %}{% if form.errors %}<script>$(function(){ $('#myModal').modal('show'); });</script>{% endif %}{% endblock %}

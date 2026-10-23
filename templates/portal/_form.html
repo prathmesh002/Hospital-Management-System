@@ -1,0 +1,11 @@
+{% for error in form.non_field_errors %}<div class="alert alert-danger">{{ error }}</div>{% endfor %}
+{% for field in form %}
+<div class="form-group{% if field.errors %} has-error{% endif %}">
+	<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+	{% if field.field.widget.input_type == 'radio' %}
+	<div>{% for radio in field %}<label class="radio-inline">{{ radio.tag }} {{ radio.choice_label }}</label> {% endfor %}</div>
+	{% else %}{{ field }}{% endif %}
+	{% for error in field.errors %}<span class="help-block">{{ error }}</span>{% endfor %}
+	{% if field.help_text %}<span class="help-block">{{ field.help_text|safe }}</span>{% endif %}
+</div>
+{% endfor %}

@@ -1,0 +1,24 @@
+{% extends "patients/base.html" %}
+{% block title %}User | Edit Profile{% endblock %}
+{% block page_title %}User | Edit Profile{% endblock %}
+{% block crumb %}Edit Profile{% endblock %}
+{% block content %}
+<div class="row"><div class="col-lg-8 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">{{ request.user.display_name }}'s Profile</h5></div>
+	<div class="panel-body">
+		<p><strong>Registered:</strong> {{ request.user.date_joined|date:"d-m-Y h:i A" }}
+		{% if request.user.updated_at %} &nbsp; <strong>Last updated:</strong> {{ request.user.updated_at|date:"d-m-Y h:i A" }}{% endif %}</p>
+		<hr>
+		<form method="post">
+			{% csrf_token %}
+			{% include "portal/_form.html" %}
+			<div class="form-group">
+				<label>User Email</label>
+				<input type="email" class="form-control" value="{{ request.user.email }}" readonly>
+				<a href="{% url 'patients:change_email' %}">Update your email id</a>
+			</div>
+			<button type="submit" class="btn btn-o btn-primary">Update</button>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}

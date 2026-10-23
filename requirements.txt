@@ -1,0 +1,5 @@
+Django>=4.2,<6.0
+# Optional: only needed for `manage.py import_legacy` against a MySQL server
+# PyMySQL>=1.1
+# Optional: only needed if you run on MySQL/MariaDB instead of SQLite
+# mysqlclient>=2.2

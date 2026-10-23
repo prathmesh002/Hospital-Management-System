@@ -1,0 +1,22 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | Appointment History{% endblock %}
+{% block page_title %}Admin | Appointment History{% endblock %}
+{% block crumb %}Appointment History{% endblock %}
+{% block content %}
+<table class="table table-hover">
+	<thead><tr>
+		<th class="center">#</th><th class="hidden-xs">Doctor Name</th><th>Patient Name</th><th>Specialization</th><th>Consultancy Fee</th>
+		<th>Appointment Date / Time</th><th>Appointment Creation Date</th><th>Current Status</th>
+	</tr></thead>
+	<tbody>
+	{% for a in appointments %}
+	<tr>
+		<td class="center">{{ forloop.counter }}.</td><td class="hidden-xs">{{ a.doctor.name }}</td><td>{{ a.patient.display_name }}</td>
+		<td>{{ a.specialization }}</td><td>{{ a.fees|floatformat:"-2" }}</td>
+		<td>{{ a.appointment_date|date:"Y-m-d" }} / {{ a.appointment_time|time:"h:i A" }}</td>
+		<td>{{ a.posted_at|date:"d-m-Y h:i A" }}</td><td>{{ a.admin_status }}</td>
+	</tr>
+	{% empty %}<tr><td colspan="8" class="text-center">No appointments yet.</td></tr>{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

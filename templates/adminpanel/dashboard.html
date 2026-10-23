@@ -1,0 +1,50 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | Dashboard{% endblock %}
+{% block page_title %}Admin | Dashboard{% endblock %}
+{% block crumb %}Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-white no-radius text-center"><div class="panel-body">
+			<span class="fa-stack fa-2x"><i class="fa fa-square fa-stack-2x text-primary"></i><i class="fa fa-smile-o fa-stack-1x fa-inverse"></i></span>
+			<h2 class="StepTitle">Manage Users</h2>
+			<p class="links cl-effect-1"><a href="{% url 'adminpanel:manage_users' %}">Manage Users</a></p>
+			<p>Total Users : {{ total_users }}</p>
+		</div></div>
+	</div>
+	<div class="col-sm-4">
+		<div class="panel panel-white no-radius text-center"><div class="panel-body">
+			<span class="fa-stack fa-2x"><i class="fa fa-square fa-stack-2x text-primary"></i><i class="fa fa-users fa-stack-1x fa-inverse"></i></span>
+			<h2 class="StepTitle">Manage Doctors</h2>
+			<p class="links cl-effect-1"><a href="{% url 'adminpanel:manage_doctors' %}">Manage Doctors</a></p>
+			<p>Total Doctors : {{ total_doctors }}</p>
+		</div></div>
+	</div>
+	<div class="col-sm-4">
+		<div class="panel panel-white no-radius text-center"><div class="panel-body">
+			<span class="fa-stack fa-2x"><i class="fa fa-square fa-stack-2x text-primary"></i><i class="fa fa-terminal fa-stack-1x fa-inverse"></i></span>
+			<h2 class="StepTitle">Appointments</h2>
+			<p class="links cl-effect-1"><a href="{% url 'adminpanel:appointment_history' %}">View Appointments</a></p>
+			<p>Total Appointments : {{ total_appointments }}</p>
+		</div></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-white no-radius text-center"><div class="panel-body">
+			<span class="fa-stack fa-2x"><i class="fa fa-square fa-stack-2x text-primary"></i><i class="fa fa-smile-o fa-stack-1x fa-inverse"></i></span>
+			<h2 class="StepTitle">Manage Patients</h2>
+			<p class="links cl-effect-1"><a href="{% url 'adminpanel:manage_patients' %}">Manage Patients</a></p>
+			<p>Total Patients : {{ total_patients }}</p>
+		</div></div>
+	</div>
+	<div class="col-sm-4">
+		<div class="panel panel-white no-radius text-center"><div class="panel-body">
+			<span class="fa-stack fa-2x"><i class="fa fa-square fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span>
+			<h2 class="StepTitle">New Queries</h2>
+			<p class="links cl-effect-1"><a href="{% url 'adminpanel:unread_queries' %}">View Unread Queries</a></p>
+			<p>Total New Queries : {{ new_queries }}</p>
+		</div></div>
+	</div>
+</div>
+{% endblock %}

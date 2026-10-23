@@ -1,0 +1,120 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}HMS{% endblock %}</title>
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/themify-icons/themify-icons.min.css' %}">
+		<link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/switchery/switchery.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="{% static 'portal/css/styles.css' %}">
+		<link rel="stylesheet" href="{% static 'portal/css/plugins.css' %}">
+		<link rel="stylesheet" href="{% static 'portal/css/themes/theme-1.css' %}" id="skin_color" />
+		{% block extra_head %}{% endblock %}
+	</head>
+	<body>
+		<div id="app">
+{% block sidebar %}{% endblock %}
+			<div class="app-content">
+				<header class="navbar navbar-default navbar-static-top">
+					<div class="navbar-header">
+						<a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" class="btn btn-navbar sidebar-toggle" data-toggle-class="app-slide-off" data-toggle-target="#app" data-toggle-click-outside="#sidebar">
+							<i class="ti-align-justify"></i>
+						</a>
+						<a class="navbar-brand" href="#">
+							<h2 style="padding-top:20% ">HMS</h2>
+						</a>
+						<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
+							<i class="ti-align-justify"></i>
+						</a>
+						<a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" data-toggle="collapse" href=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<i class="ti-view-grid"></i>
+						</a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-right">
+							<li style="padding-top:2% ">
+								<h2>Hospital Management System</h2>
+							</li>
+							<li class="dropdown current-user">
+								<a href class="dropdown-toggle" data-toggle="dropdown">
+									<img src="{% static 'portal/images/images.jpg' %}"> <span class="username">{{ request.user.display_name }} <i class="ti-angle-down"></i></span>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+{% block user_menu %}{% endblock %}
+									<li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+								</ul>
+							</li>
+						</ul>
+						<div class="close-handle visible-xs-block menu-toggler" data-toggle="collapse" href=".navbar-collapse">
+							<div class="arrow-left"></div>
+							<div class="arrow-right"></div>
+						</div>
+					</div>
+				</header>
+				<div class="main-content">
+					<div class="wrap-content container" id="container">
+						<section id="page-title">
+							<div class="row">
+								<div class="col-sm-8">
+									<h1 class="mainTitle">{% block page_title %}{% endblock %}</h1>
+								</div>
+								<ol class="breadcrumb">
+									<li><span>{% block crumb_root %}{% endblock %}</span></li>
+									<li class="active"><span>{% block crumb %}{% endblock %}</span></li>
+								</ol>
+							</div>
+						</section>
+{% include "portal/_messages.html" %}
+						<div class="container-fluid container-fullw bg-white">
+{% block content %}{% endblock %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div class="footer-inner">
+					<div class="pull-left">
+						<span class="text-bold text-uppercase"> Hospital Management System</span>
+					</div>
+					<div class="pull-right">
+						<span class="go-top"><i class="ti-angle-up"></i></span>
+					</div>
+				</div>
+			</footer>
+{% include "portal/_settings.html" %}
+		</div>
+		<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'vendor/modernizr/modernizr.js' %}"></script>
+		<script src="{% static 'vendor/jquery-cookie/jquery.cookie.js' %}"></script>
+		<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+		<script src="{% static 'vendor/switchery/switchery.min.js' %}"></script>
+		<script src="{% static 'vendor/maskedinput/jquery.maskedinput.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+		<script src="{% static 'vendor/autosize/autosize.min.js' %}"></script>
+		<script src="{% static 'vendor/selectFx/classie.js' %}"></script>
+		<script src="{% static 'vendor/selectFx/selectFx.js' %}"></script>
+		<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap-timepicker/bootstrap-timepicker.min.js' %}"></script>
+		<script src="{% static 'portal/js/main.js' %}"></script>
+		<script src="{% static 'portal/js/form-elements.js' %}"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				FormElements.init();
+			});
+		</script>
+		{% block extra_js %}{% endblock %}
+	</body>
+</html>

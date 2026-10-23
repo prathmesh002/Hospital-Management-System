@@ -1,0 +1,35 @@
+{% extends "portal/auth_base.html" %}
+{% block title %}User Registration{% endblock %}
+{% block heading %}HMS | Patient Registration{% endblock %}
+{% block box %}
+<div class="box-register">
+	<form name="registration" id="registration" method="post">
+		{% csrf_token %}
+		<fieldset>
+			<legend>Sign Up</legend>
+			<p>Enter your personal and account details below:</p>
+			{% include "portal/_form.html" %}
+			<span id="email-status" style="font-size:12px;"></span>
+			<div class="form-actions">
+				<p>Already have an account? <a href="{% url 'accounts:patient_login' %}">Log-in</a></p>
+				<button type="submit" class="btn btn-primary pull-right" id="submit">Submit <i class="fa fa-arrow-circle-right"></i></button>
+			</div>
+		</fieldset>
+	</form>
+	<div class="copyright">&copy; <span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span></div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+$('#id_email').on('blur', function () {
+	var v = $(this).val();
+	if (!v) { return; }
+	$.getJSON("{% url 'accounts:check_email' %}", {email: v}, function (d) {
+		$('#email-status').html(d.available
+			? "<span style='color:green'>Email available for registration.</span>"
+			: "<span style='color:red'>Email already exists.</span>");
+		$('#submit').prop('disabled', !d.available);
+	});
+});
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "doctors/base.html" %}
+{% block title %}Doctor | {% if mode == 'add' %}Add{% else %}Edit{% endif %} Patient{% endblock %}
+{% block page_title %}Doctor | {% if mode == 'add' %}Add{% else %}Edit{% endif %} Patient{% endblock %}
+{% block crumb %}{% if mode == 'add' %}Add{% else %}Edit{% endif %} Patient{% endblock %}
+{% block content %}
+<div class="row"><div class="col-lg-8 col-md-12"><div class="panel panel-white">
+	<div class="panel-heading"><h5 class="panel-title">{% if mode == 'add' %}Add Patient{% else %}Edit Patient: {{ record.name }}{% endif %}</h5></div>
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			{% include "portal/_form.html" %}
+			<span id="email-status" style="font-size:12px;"></span><br>
+			<button type="submit" id="submit" class="btn btn-o btn-primary">{% if mode == 'add' %}Add{% else %}Update{% endif %}</button>
+		</form>
+	</div>
+</div></div></div>
+{% endblock %}
+{% block extra_js %}
+{% if mode == 'add' %}
+<script>
+$('#id_email').on('blur', function () {
+	var v = $(this).val();
+	if (!v) { return; }
+	$.getJSON("{% url 'doctors:check_patient_email' %}", {email: v}, function (d) {
+		$('#email-status').html(d.available
+			? "<span style='color:green'>Email available for registration.</span>"
+			: "<span style='color:red'>Email already exists.</span>");
+		$('#submit').prop('disabled', !d.available);
+	});
+});
+</script>
+{% endif %}
+{% endblock %}

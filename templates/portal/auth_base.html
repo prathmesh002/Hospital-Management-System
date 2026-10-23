@@ -1,0 +1,42 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}HMS{% endblock %}</title>
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/themify-icons/themify-icons.min.css' %}">
+		<link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/switchery/switchery.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'vendor/bootstrap-timepicker/bootstrap-timepicker.min.css' %}" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="{% static 'portal/css/styles.css' %}">
+		<link rel="stylesheet" href="{% static 'portal/css/plugins.css' %}">
+		<link rel="stylesheet" href="{% static 'portal/css/themes/theme-1.css' %}" id="skin_color" />
+	</head>
+	<body class="login">
+		<div class="row">
+			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+				<div class="logo margin-top-30">
+					<a href="{% url 'core:index' %}"><h2>{% block heading %}HMS{% endblock %}</h2></a>
+				</div>
+{% include "portal/_messages.html" %}
+{% block box %}{% endblock %}
+			</div>
+		</div>
+		<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'vendor/modernizr/modernizr.js' %}"></script>
+		<script src="{% static 'vendor/jquery-cookie/jquery.cookie.js' %}"></script>
+		<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+		<script src="{% static 'vendor/switchery/switchery.min.js' %}"></script>
+		<script src="{% static 'portal/js/main.js' %}"></script>
+		<script>jQuery(document).ready(function() { Main.init(); $('.box-forgot input[type=email], .box-forgot input[type=password], .box-forgot input[type=text]').addClass('form-control'); });</script>
+		{% block extra_js %}{% endblock %}
+	</body>
+</html>

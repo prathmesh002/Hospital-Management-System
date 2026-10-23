@@ -1,0 +1,9 @@
+{% extends "adminpanel/base.html" %}
+{% block title %}Admin | B/w Dates Reports{% endblock %}
+{% block page_title %}Admin | B/w Dates Reports{% endblock %}
+{% block crumb %}Report{% endblock %}
+{% block content %}
+<h5 align="center" style="color:blue">Report from {{ start|date:"d-m-Y" }} to {{ end|date:"d-m-Y" }}</h5>
+{% include "portal/_patient_table.html" with records=records view_url="adminpanel:view_patient" %}
+<a href="{% url 'adminpanel:between_dates_report' %}" class="btn btn-default">New report</a>
+{% endblock %}
